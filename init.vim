@@ -144,9 +144,9 @@ Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'Rican7/php-doc-modded'
 Plug 'adoy/vim-php-refactoring-toolbox'
 Plug 'stephpy/vim-php-cs-fixer'
-Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
 Plug 'rayburgemeestre/phpfolding.vim'
 Plug 'phpmd/phpmd'
+Plug 'phpcd/phpcd'
 
 
 " python
