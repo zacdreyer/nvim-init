@@ -67,7 +67,6 @@ Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'dracula/vim'
 "./install.sh --clang-completer in ~/.config/nvim/plugs
-Plug 'Valloric/YouCompleteMe'
 Plug 'moll/vim-bbye'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'https://github.com/tpope/vim-sensible.git'
