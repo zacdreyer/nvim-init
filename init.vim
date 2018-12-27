@@ -146,7 +146,7 @@ Plug 'adoy/vim-php-refactoring-toolbox'
 Plug 'stephpy/vim-php-cs-fixer'
 Plug 'rayburgemeestre/phpfolding.vim'
 Plug 'phpmd/phpmd'
-Plug 'lvht/phpcd.vim', {'for':'php', 'do':'composer install'
+Plug 'lvht/phpcd.vim', {'for':'php', 'do':'composer install'}
 
 
 " python
