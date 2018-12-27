@@ -2,7 +2,7 @@
 "" Vim-PLug core
 "*****************************************************************************
 if has('vim_starting')
-  set nocompatible               " Be iMproved
+  set nocompatible               " Be Improved
 endif
 
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
@@ -146,7 +146,7 @@ Plug 'adoy/vim-php-refactoring-toolbox'
 Plug 'stephpy/vim-php-cs-fixer'
 Plug 'rayburgemeestre/phpfolding.vim'
 Plug 'phpmd/phpmd'
-Plug 'phpcd/phpcd'
+Plug 'lvht/phpcd.vim', {'for':'php', 'do':'composer install'
 
 
 " python
