@@ -77,6 +77,10 @@ Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-dispatch'
 Plug 'mhinz/vim-signify'
 
+"fzf - Ripgrep and fuzzy search - map to leader G - Remember to apt-get install ripgrep
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 let g:make = 'gmake'
 if exists('make')
         let g:make = 'make'
@@ -384,6 +388,43 @@ set autoread
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
+
+"fzf and ripgrep - Remeber to apt-get install ripgrep leader g (Rg) - Works best when going to new tab with leader n(tabe)
+"nnoremap <leader>g :Rg <CR>                                                                                                                                                                                    
+"nnoremap <leader>n :tabe<CR>                                                                                                                                                                                   
+let g:fzf_tags_command = 'ctags -R'                                                                                                                                                                            
+" Border color                                                                                                                                                                                                 
+let g:fzf_layout = {'up':'~95%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }                                                              
+                                                                                                                                                                                                               
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'                                                                                                                                                       
+let $FZF_DEFAULT_COMMAND="rg --files 2> /tmp/error-log"                                                                                                                                                        
+" Ripgrep advanced                                                                                                                                                                                             
+function! RipgrepFzf(query, fullscreen)                                                                                                                                                                        
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'                                                                                                            
+  let initial_command = printf(command_fmt, shellescape(a:query))                                                                                                                                              
+  let reload_command = printf(command_fmt, '{q}')                                                                                                                                                              
+  let options = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}                                                                                                        
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(options), a:fullscreen)                                                                                                                           
+endfunction                                                                                                                                                                                                    
+                                                                                                                                                                                                               
+command! -nargs=* -bang RF call RipgrepFzf(<q-args>, <bang>0)                                                                                                                                                  
+                                                                                                                                                                                                               
+                                                                                                                                                                                                               
+" Customize fzf colors to match your color scheme                                                                                                                                                              
+let g:fzf_colors =                                                                                                                                                                                             
+ \ { 'fg':      ['fg', 'Normal'],                                                                                                                                                                               
+ \ 'bg':      ['bg', 'Normal'],                                                                                                                                                                               
+ \ 'hl':      ['fg', 'Comment'],                                                                                                                                                                              
+ \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],                                                                                                                                                 
+ \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],                                                                                                                                                           
+ \ 'hl+':     ['fg', 'Statement'],                                                                                                                                                                            
+ \ 'info':    ['fg', 'PreProc'],                                                                                                                                                                              
+ \ 'border':  ['fg', 'Ignore'],                                                                                                                                                                               
+ \ 'prompt':  ['fg', 'Conditional'],                                                                                                                                                                          
+ \ 'pointer': ['fg', 'Exception'],                                                                                                                                                                            
+ \ 'marker':  ['fg', 'Keyword'],                                                                                                                                                                              
+ \ 'spinner': ['fg', 'Label'],                                                                                                                                                                                
+ \ 'header':  ['fg', 'Comment'] }
 
 "" Split
 noremap <Leader>h :<C-u>split<CR>
