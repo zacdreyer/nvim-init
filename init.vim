@@ -239,6 +239,8 @@ let g:session_command_aliases = 1
 "" Visual Settings
 "*****************************************************************************
 syntax on
+"" set re=1 set to ensure syntax highlighting always highlights in large files as well as skipping to lines. Example 5500 j.
+set re=1
 set ruler
 set number
 
@@ -361,7 +363,7 @@ endif
 "" The PC is fast enough, do syntax highlight syncing from start
 augroup vimrc-sync-fromstart
   autocmd!
-  autocmd BufEnter * :syntax sync fromstart
+  autocmd BufEnter * :syntax sync maxlines=0 
 augroup END
 
 "" Remember cursor position
